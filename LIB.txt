@@ -1,0 +1,4 @@
+glad https://glad.dav1d.de/
+glfw https://www.glfw.org/download.html
+glm https://github.com/g-truc/glm
+imgui https://github.com/ocornut/imgui

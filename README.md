@@ -9,8 +9,6 @@ Projekt zawiera model kinematyczny, rendering 3D, sterowanie manualne (GUI + kla
 
 ![Demo](demo.gif)
 
-### Zrzut ekranu
-![Screenshot](assets/screenshot.png)
 
 ---
 

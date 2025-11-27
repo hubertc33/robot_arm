@@ -1,126 +1,114 @@
-3-DOF Robot Arm Simulator (C++ / OpenGL)
+# 3-DOF Robot Arm Simulator (C++ / OpenGL)
 
-Interaktywny symulator 3-stopniowego ramienia robota opracowany w języku C++ z wykorzystaniem OpenGL.
-Projekt zawiera kompletny model kinematyczny, system renderowania 3D, sterowanie manualne (klawiatura + GUI), obsługę chwytaka oraz moduł zapisu i odtwarzania trajektorii ruchu.
+Interaktywny symulator 3-stopniowego ramienia robota opracowany w języku C++ z wykorzystaniem OpenGL.  
+Projekt zawiera model kinematyczny, rendering 3D, sterowanie manualne (GUI + klawiatura), moduł chwytaka oraz system nagrywania i odtwarzania trajektorii.
 
-Podgląd działania
-<!-- GIF można podpiąć tutaj -->
+---
 
-[Wstaw GIF tutaj]
+## Podgląd działania
 
-Zrzut ekranu
+![Demo](assets/demo.gif)
 
-Funkcjonalności
+### Zrzut ekranu
+![Screenshot](assets/screenshot.png)
 
-Symulacja ruchu ramienia robota (3 DOF) z osobnym modułem chwytaka
+---
 
-Sterowanie ręczne poprzez:
+## Funkcjonalności
 
-klawiaturę
+- Symulacja ramienia robota (3 DOF) + chwytak  
+- Sterowanie:
+  - klawiatura
+  - graficzny interfejs GUI (suwaki, pola, przyciski)
+- Suwaki regulacji dla każdego przegubu
+- Wprowadzanie pozycji XYZ i automatyczne ustawianie ramienia (Go to point)
+- System nagrywania trajektorii:
+  - nagrywanie ruchu
+  - zapis klatek
+  - odtwarzanie ścieżki
+- Interaktywna kamera 3D:
+  - obracanie
+  - przybliżanie / oddalanie
+- Renderowanie obiektów 3D (ramię, chwytak, podłoże, kostka)
+- Tryb wyświetlania siatki
+- Czytelna wizualizacja segmentów
 
-interfejs GUI (suwaki, pola wpisywania wartości, przyciski akcji)
+---
 
-Suwaki regulacji kąta każdego przegubu (Joint 0–2)
+## Sterowanie
 
-Wprowadzanie pozycji XYZ i automatyczne ustawianie ramienia (Go to point)
+### Klawiatura
 
-Rejestrowanie trajektorii ruchu:
+| Klawisz | Funkcja |
+|--------|---------|
+| Q / E  | Joint 0 – zwiększ / zmniejsz |
+| A / D  | Joint 1 – zwiększ / zmniejsz |
+| Z / C  | Joint 2 – zwiększ / zmniejsz |
+| SPACE  | Zamknięcie / otwarcie chwytaka |
 
-nagrywanie
+---
 
-zapis klatek ruchu
+### GUI
 
-odtwarzanie zarejestrowanej ścieżki
+- Suwaki regulacji każdego przegubu  
+- Pola wartości (Target X, Y, Z)  
+- **Idź do punktu**  
+- **Nagrywaj**  
+- **Zakończ nagrywanie**  
+- **Odtwórz trajektorię**  
+- **Zakończ odtwarzanie**  
+- Wyświetlanie pozycji chwytaka  
+- Przełącznik **Pokaż siatkę**  
 
-Interaktywna kamera 3D (obracanie, zoom, przesuwanie)
+---
 
-Renderowanie obiektów:
+### Sterowanie kamerą
 
-podłoże
+| Akcja | Funkcja |
+|-------|---------|
+| Scroll | Przybliżenie / oddalenie |
+| Lewy przycisk + ruch | Obracanie widoku |
+| Prawy przycisk | Przesuwanie sceny (jeśli włączone) |
 
-elementy ramienia
+---
 
-chwytak
-
-kostki / obiekty manipulacyjne
-
-Czytelna wizualizacja — segmenty kolorystyczne i przejrzysta prezentacja przestrzenna
-
-Tryb wyświetlania siatki (opcjonalnie)
-
-Sterowanie
-Klawiatura
-Klawisz	Funkcja
-Q / E	Joint 0: zwiększ / zmniejsz
-A / D	Joint 1: zwiększ / zmniejsz
-Z / C	Joint 2: zwiększ / zmniejsz
-SPACE	Zamknięcie / otwarcie chwytaka
-GUI
-
-Suwaki regulacji przegubów
-
-Pola wprowadzania pozycji (Target X, Y, Z)
-
-Przycisk Idź do punktu
-
-Przycisk Nagrywaj
-
-Przycisk Zakończ nagrywanie
-
-Przycisk Odtwórz trajektorię
-
-Przycisk Zakończ odtwarzanie
-
-Wyświetlanie pozycji chwytaka
-
-Przełącznik Pokaż siatkę
-
-Sterowanie kamerą
-Akcja	Funkcja
-Scroll	Przybliżenie / oddalenie
-Lewy przycisk myszy + ruch	Obracanie kamery
-Prawy przycisk myszy (opcjonalnie)	Przesuwanie sceny
-Kinematyka
+## Kinematyka
 
 Projekt wykorzystuje klasyczny model łańcucha kinematycznego, obejmujący:
 
-Transformacje rotacji oraz translacji
+- transformacje translacji i rotacji
+- przeguby obrotowe
+- obliczanie pozycji efektora
+- ustalanie pozycji docelowej w przestrzeni (XYZ)
+- wstępną implementację kinematyki odwrotnej (IKController)
 
-Połączenia przegubowe (revolute joints)
+---
 
-Obliczanie pozycji efektora
-
-Ustalanie pozycji docelowej poprzez podanie wartości XYZ
-
-Wstępną implementację kinematyki odwrotnej (IKController)
-
-Struktura projektu
+## Struktura projektu
 src/
-├── BoxObject.cpp/.h        # Obiekty kostek
-├── Camera.cpp/.h           # Kontrola kamery 3D
-├── Gripper.cpp/.h          # Logika chwytaka
-├── GuiManager.cpp/.h       # Warstwa interfejsu użytkownika
-├── IKController.cpp/.h     # Kinematyka odwrotna / punkt docelowy
-├── InputManager.cpp/.h     # Obsługa klawiatury i myszy
-├── Recorder.cpp/.h         # Nagrywanie i odtwarzanie trajektorii
-├── Renderer.cpp/.h         # Rendering OpenGL
-├── RobotArm.cpp/.h         # Logika ramienia i przegubów
-├── Scene.cpp/.h            # Scena (obiekty, podłoże)
-├── Segment.cpp/.h          # Segmenty ramienia
-├── ShaderProgram.cpp/.h    # Obsługa shaderów
-├── Simulation.cpp/.h       # Główna logika symulacji
-└── main.cpp                # Punkt wejściowy programu
+├── BoxObject.cpp/.h # Obiekty kostek
+├── Camera.cpp/.h # Kontrola kamery 3D
+├── Gripper.cpp/.h # Logika chwytaka
+├── GuiManager.cpp/.h # GUI
+├── IKController.cpp/.h # Kinematyka odwrotna / target point
+├── InputManager.cpp/.h # Klawiatura i mysz
+├── Recorder.cpp/.h # Nagrywanie/odtwarzanie trajektorii
+├── Renderer.cpp/.h # Rendering OpenGL
+├── RobotArm.cpp/.h # Logika ramienia
+├── Scene.cpp/.h # Scena 3D
+├── Segment.cpp/.h # Segmenty ramienia
+├── ShaderProgram.cpp/.h # Obsługa shaderów
+├── Simulation.cpp/.h # Logika symulacji
+└── main.cpp # Punkt wejściowy programu
 
-Środowisko i technologie
+---
 
-C++ 17
+## Technologie
 
-OpenGL
+- C++17  
+- OpenGL  
+- GLFW / GLUT  
+- GLAD / GLEW  
+- ImGui  
+- Matematyka 3D (macierze, wektory, rotacje)
 
-GLFW / GLUT (w zależności od konfiguracji)
-
-GLEW / GLAD (loader funkcji)
-
-ImGui – interfejs GUI
-
-Matematyka 3D: macierze transformacji, wektory, rotacje

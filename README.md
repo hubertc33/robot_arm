@@ -83,6 +83,7 @@ Projekt wykorzystuje klasyczny model łańcucha kinematycznego, obejmujący:
 ---
 
 ## Struktura projektu
+```
 src/
 ├── BoxObject.cpp/.h # Obiekty kostek
 ├── Camera.cpp/.h # Kontrola kamery 3D
@@ -98,7 +99,7 @@ src/
 ├── ShaderProgram.cpp/.h # Obsługa shaderów
 ├── Simulation.cpp/.h # Logika symulacji
 └── main.cpp # Punkt wejściowy programu
-
+```
 ---
 
 ## Technologie

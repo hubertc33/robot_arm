@@ -1,4 +1,4 @@
-#3-DOF Robot Arm Simulator (C++ / OpenGL)
+# 3-DOF Robot Arm Simulator (C++ / OpenGL)
 
 Interaktywny symulator 3-stopniowego ramienia robota opracowany w języku C++ z wykorzystaniem OpenGL.  
 Projekt zawiera model kinematyczny, rendering 3D, sterowanie manualne (GUI + klawiatura), moduł chwytaka oraz system nagrywania i odtwarzania trajektorii.
@@ -7,7 +7,7 @@ Projekt zawiera model kinematyczny, rendering 3D, sterowanie manualne (GUI + kla
 
 ## Podgląd działania
 
-![Demo](assets/demo.gif)
+![Demo](demo.gif)
 
 ### Zrzut ekranu
 ![Screenshot](assets/screenshot.png)

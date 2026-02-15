@@ -1,113 +1,112 @@
 # 3-DOF Robot Arm Simulator (C++ / OpenGL)
 
-Interaktywny symulator 3-stopniowego ramienia robota opracowany w języku C++ z wykorzystaniem OpenGL.  
-Projekt zawiera model kinematyczny, rendering 3D, sterowanie manualne (GUI + klawiatura), moduł chwytaka oraz system nagrywania i odtwarzania trajektorii.
+An interactive simulator of a 3-degree-of-freedom robotic arm, developed in C++ using OpenGL.
+The project includes a kinematic model, 3D rendering, manual control (GUI + keyboard), a gripper module, and a trajectory recording/playback system.
 
 ---
 
-## Podgląd działania
+## Preview
 
 ![Demo](demo.gif)
 
 
 ---
 
-## Funkcjonalności
+## Features
 
-- Symulacja ramienia robota (3 DOF) + chwytak  
-- Sterowanie:
-  - klawiatura
-  - graficzny interfejs GUI (suwaki, pola, przyciski)
-- Suwaki regulacji dla każdego przegubu
-- Wprowadzanie pozycji XYZ i automatyczne ustawianie ramienia (Go to point)
-- System nagrywania trajektorii:
-  - nagrywanie ruchu
-  - zapis klatek
-  - odtwarzanie ścieżki
-- Interaktywna kamera 3D:
-  - obracanie
-  - przybliżanie / oddalanie
-- Renderowanie obiektów 3D (ramię, chwytak, podłoże, kostka)
-- Tryb wyświetlania siatki
-- Czytelna wizualizacja segmentów
+- 3 DOF robotic arm simulation + gripper
+- Control methods:
+  - keyboard
+  - graphical GUI (sliders, input fields, buttons)
+- Joint angle sliders for each joint
+- XYZ position input with automatic arm positioning (Go to point)
+- Trajectory recording system:
+  - motion recording
+  - frame saving
+  - path playback
+- Interactive 3D camera:
+  - rotation
+  - zoom in / out
+- 3D object rendering (arm, gripper, ground plane, cube)
+- Grid display mode
+- Clear visualization of arm segments
 
 ---
 
-## Sterowanie
+## Controls
 
-### Klawiatura
+### Keyboard
 
-| Klawisz | Funkcja |
+| Key | Function |
 |--------|---------|
-| Q / E  | Joint 0 – zwiększ / zmniejsz |
-| A / D  | Joint 1 – zwiększ / zmniejsz |
-| Z / C  | Joint 2 – zwiększ / zmniejsz |
-| SPACE  | Zamknięcie / otwarcie chwytaka |
+| Q / E  | Joint 0 – increase / decrease |
+| A / D  | Joint 1 – increase / decrease |
+| Z / C  | Joint 2 – increase / decrease |
+| SPACE  | Close / open gripper |
 
 ---
 
 ### GUI
 
-- Suwaki regulacji każdego przegubu  
-- Pola wartości (Target X, Y, Z)  
-- **Idź do punktu**  
-- **Nagrywaj**  
-- **Zakończ nagrywanie**  
-- **Odtwórz trajektorię**  
-- **Zakończ odtwarzanie**  
-- Wyświetlanie pozycji chwytaka  
-- Przełącznik **Pokaż siatkę**  
+- Joint control sliders 
+- Value input fields (Target X, Y, Z)  
+- Go to point **Idź do punktu**  
+- Start recording **Nagrywaj**  
+- Stop recording **Zakończ nagrywanie**  
+- Play trajectory **Odtwórz trajektorię**  
+- Stop playback **Zakończ odtwarzanie**  
+- Gripper position display
+- Show grid toggle **Pokaż siatkę**  
 
 ---
 
-### Sterowanie kamerą
+### Camera Controlsą
 
-| Akcja | Funkcja |
+| Action | Function |
 |-------|---------|
-| Scroll | Przybliżenie / oddalenie |
-| Lewy przycisk + ruch | Obracanie widoku |
-| Prawy przycisk | Przesuwanie sceny (jeśli włączone) |
+| Scroll | Zoom in / out |
+| Left mouse button + drag | Rotate view |
+| Right mouse button| Pan the scene (if enabled) |
 
 ---
 
-## Kinematyka
+## Kinematics
 
-Projekt wykorzystuje klasyczny model łańcucha kinematycznego, obejmujący:
-
-- transformacje translacji i rotacji
-- przeguby obrotowe
-- obliczanie pozycji efektora
-- ustalanie pozycji docelowej w przestrzeni (XYZ)
-- wstępną implementację kinematyki odwrotnej (IKController)
+- The project uses a classic kinematic chain model, including:
+- translation and rotation transforms
+- revolute joints
+- end-effector position computation
+- target positioning in 3D space (XYZ)
+- an initial inverse kinematics implementation (IKController))
 
 ---
 
-## Struktura projektu
+## Project Structure
 ```
 src/
-├── BoxObject.cpp/.h # Obiekty kostek
-├── Camera.cpp/.h # Kontrola kamery 3D
-├── Gripper.cpp/.h # Logika chwytaka
+├── BoxObject.cpp/.h # Cube objects
+├── Camera.cpp/.h # 3D camera controls
+├── Gripper.cpp/.h # Gripper logic
 ├── GuiManager.cpp/.h # GUI
-├── IKController.cpp/.h # Kinematyka odwrotna / target point
-├── InputManager.cpp/.h # Klawiatura i mysz
-├── Recorder.cpp/.h # Nagrywanie/odtwarzanie trajektorii
-├── Renderer.cpp/.h # Rendering OpenGL
-├── RobotArm.cpp/.h # Logika ramienia
-├── Scene.cpp/.h # Scena 3D
-├── Segment.cpp/.h # Segmenty ramienia
-├── ShaderProgram.cpp/.h # Obsługa shaderów
-├── Simulation.cpp/.h # Logika symulacji
-└── main.cpp # Punkt wejściowy programu
+├── IKController.cpp/.h # Inverse kinematics / target point
+├── InputManager.cpp/.h # Keyboard and mouse input
+├── Recorder.cpp/.h # Trajectory recording/playback
+├── Renderer.cpp/.h # OpenGL rendering
+├── RobotArm.cpp/.h # Robot arm logic
+├── Scene.cpp/.h # 3D scene
+├── Segment.cpp/.h # Arm segments
+├── ShaderProgram.cpp/.h # Shader handling
+├── Simulation.cpp/.h # Simulation logic
+└── main.cpp # Program entry point
 ```
 ---
 
-## Technologie
+## Technologies
 
 - C++17  
 - OpenGL  
 - GLFW / GLUT  
 - GLAD / GLEW  
 - ImGui  
-- Matematyka 3D (macierze, wektory, rotacje)
+- 3D math (matrices, vectors, rotations)
 
